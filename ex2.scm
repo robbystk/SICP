@@ -4,7 +4,8 @@
 ; 2.1: FizzBuzz
 (define (fb n)
     (define (print-fb x)
-        (cond ((and (= (modulo x 3) 0) (= (modulo x 5) 0)) (format #t "FizzBuzz~N"))
+        (cond ((and (= (modulo x 3) 0) (= (modulo x 5) 0))
+                  (format #t "FizzBuzz~N"))
               ((= (modulo x 3) 0) (format #t "Fizz~N"))
               ((= (modulo x 5) 0) (format #t "Buzz~N"))
               (else (format #t "~A~N" x))))
