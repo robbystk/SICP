@@ -19,10 +19,19 @@
 ; 2.2 recursion and iteration
 
 ; 2.3 Pascal's triangle
+; this takes row and column with the triangle tipped 45 degrees
 (define (pascal i j)
     (if (or (= i 0) (= j 0))
         1
         (+ (pascal (- i 1) j) (pascal j (- j 1)))))
+
+; alternative version taking row and 'column' of normal-orientation triangle
+(define (pascal-alt n k)
+    (cond ((or (< k 0) (> k n)) 0)
+          ((or (= k 0) (= k n)) 1)
+          (else (+
+                    (pascal (- n 1) k)
+                    (pascal (- n 1) (- k 1))))))
 
 ; 2.4 sines
 
