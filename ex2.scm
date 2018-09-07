@@ -17,6 +17,27 @@
             
 
 ; 2.2 recursion and iteration
+; f(n) = {n,                            n < 3
+;        {f(n) + 2f(n-1) + 3f(n-3),     n >= 3
+
+; recursive
+(define (recur-f n)
+    (if (< n 3)
+        n
+        (+ (recur-f (- n 1)) (* 2 (recur-f (- n 2))) (* 3 (recur-f (- n 3))))))
+
+; iterative
+(define (iter-f n)
+    (define (iter cur prev pprev cnt)
+        (if (>= cnt n)
+            cur
+            (iter (+ cur (* 2 prev) (* 3 pprev))
+                  cur
+                  prev
+                  (+ 1 cnt))))
+    (if (< n 3)
+        n
+        (iter 2 1 0 2)))
 
 ; 2.3 Pascal's triangle
 ; this takes row and column with the triangle tipped 45 degrees
