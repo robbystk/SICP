@@ -82,3 +82,12 @@
             (iter (- cnt 1) (* x acc))))
     (iter n 1))
 ; complexity: n time, 1 space
+
+; 2.5.2
+(define (fast-exp x n)
+    (define (iter cnt acc)
+        (cond ((>= cnt n) acc)
+              ((and (not (= cnt 0)) (<= (* 2 cnt) n))
+                    (iter (* 2 cnt) (* acc acc)))
+              (else (iter (+ cnt 1) (* x acc)))))
+    (iter 0 1))
