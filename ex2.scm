@@ -55,5 +55,16 @@
                     (pascal (- n 1) (- k 1))))))
 
 ; 2.4 sines
+(define (cube x) (* x x x))
+(define (p x) (- (* 3 x) (* 4 (cube x))))
+(define (sine angle)
+    (if (not (> (abs angle) 0.1))
+        angle
+        (p (sine (/ angle 3.0)))))
+
+; trace reveals that:
+; (sine 12.15) calles sine 5 times
+; using trace on p reveals that the space complexity is the same since
+; there is always a call to p waiting after every call to sine.
 
 ; 2.5 exponents
