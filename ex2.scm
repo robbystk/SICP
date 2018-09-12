@@ -68,3 +68,17 @@
 ; there is always a call to p waiting after every call to sine.
 
 ; 2.5 exponents
+
+(define (simple-exp x n)
+    (if (= n 0)
+        1
+        (* x (simple-exp x (- n 1)))))
+; complexity: n space, n time
+
+(define (iter-exp x n)
+    (define (iter cnt acc)
+        (if (<= cnt 0)
+            acc
+            (iter (- cnt 1) (* x acc))))
+    (iter n 1))
+; complexity: n time, 1 space
