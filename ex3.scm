@@ -10,3 +10,11 @@
 
 ; (((double (double double)) inc) 5)
 ; returns 21 which I think is correct
+
+; 2.7 Composition
+
+(define (compose f g)
+    (lambda (x) (f (g x))))
+
+; ((compose square inc) 6)
+; returns 49 whic I think is correct
