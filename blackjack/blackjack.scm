@@ -60,4 +60,18 @@
 
 (define (user-says-y?) (string=? (read-line) "y"))
 
+(define (stop-at n)
+    (lambda (your-hand opponent-up-card)
+        (newline)
+        (display "Opponent up card ")
+        (display opponent-up-card)
+        (newline)
+        (display "Your Total: ")
+        (display (hand-total your-hand))
+        (newline)
+        (if (< (hand-total your-hand) n)
+            (display "Hit")
+            (display "Stay"))
+        (newline)
+        (< (hand-total your-hand) n)))
 
