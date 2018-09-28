@@ -75,3 +75,11 @@
         (newline)
         (< (hand-total your-hand) n)))
 
+(define (test-strategy player-strategy house-strategy n)
+    (define (iter tot step)
+        (if (>= step n)
+            tot
+            (iter (+ tot (twenty-one player-strategy house-strategy))
+                (+ 1 step))))
+    (iter 0 0))
+
