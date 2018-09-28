@@ -48,16 +48,16 @@
 
 (define (hit? your-hand opponent-up-card)
   (newline)
-  (princ "Opponent up card ")
-  (princ opponent-up-card)
+  (display "Opponent up card ")
+  (display opponent-up-card)
   (newline)
-  (princ "Your Total: ")
-  (princ (hand-total your-hand))
+  (display "Your Total: ")
+  (display (hand-total your-hand))
   (newline)
-  (princ "Hit? ")
+  (display "Hit? ")
   (user-says-y?))
 
 
-(define (user-says-y?) (eq? (read-from-keyboard) 'y))
+(define (user-says-y?) (string=? (read-line) "y"))
 
 
