@@ -82,3 +82,13 @@
                 (display "Stay"))
             (newline)
             result)))
+
+(define (agree strat-one strat-two)
+    (lambda (your-hand opponent-up-card)
+        (and (strat-one your-hand opponent-up-card)
+            (strat-two your-hand opponent-up-card))))
+
+(define (hybrid combiner strat-one strat-two)
+    (lambda (your-hand opponent-up-card)
+        (combiner (strat-one your-hand opponent-up-card)
+            (strat-two your-hand opponent-up-card))))
