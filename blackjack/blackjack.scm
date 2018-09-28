@@ -62,17 +62,6 @@
 
 (define (stop-at n)
     (lambda (your-hand opponent-up-card)
-        (newline)
-        (display "Opponent up card ")
-        (display opponent-up-card)
-        (newline)
-        (display "Your Total: ")
-        (display (hand-total your-hand))
-        (newline)
-        (if (< (hand-total your-hand) n)
-            (display "Hit")
-            (display "Stay"))
-        (newline)
         (< (hand-total your-hand) n)))
 
 (define (test-strategy player-strategy house-strategy n)
@@ -83,3 +72,13 @@
                 (+ 1 step))))
     (iter 0 0))
 
+(define (watch-player strategy)
+    (lambda (your-hand opponent-up-card)
+        (format #t "~nOpponent up card ~a~n" opponent-up-card)
+        (format #t "Your Total: ~a~n" (hand-total your-hand))
+        (let ((result (strategy your-hand opponent-up-card)))
+            (if result
+                (display "Hit")
+                (display "Stay"))
+            (newline)
+            result)))
