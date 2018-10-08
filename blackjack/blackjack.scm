@@ -28,23 +28,36 @@
         (else my-hand)))                ; stay
 
 
-(define (deal) (+ 1 (random 10)))
+(define (deal) (new-card
+    (+ 1 (random 10))
+    (list-ref (list 'clubs 'hearts 'diamonds 'spades) (random 4))))
 
+; card contains a value (number) and suit (symbol)
+(define (new-card value suit)
+    (cons value suit))
+
+(define (card-value card)
+    (car card))
+
+(define (card-suit card)
+    (cdr card))
+
+; A hand is a list of cards.  The first card is the one facing up
 (define (make-new-hand first-card)
-  (make-hand first-card first-card))
+  (list first-card))
 
-(define (make-hand up-card total)
-  (cons up-card total))
+(define (hand-add-card hand card)
+  (append hand (list card)))
 
 (define (hand-up-card hand)
   (car hand))
 
 (define (hand-total hand)
-  (cdr hand))
-
-(define (hand-add-card hand new-card)
-  (make-hand (hand-up-card hand)
-             (+ new-card (hand-total hand))))
+    (define (total-iter hand counter)
+        (if (null? hand)
+        counter
+        (total-iter (cdr hand) (+ counter (card-value (car hand))))))
+    (total-iter hand 0))
 
 (define (hit? your-hand opponent-up-card)
   (newline)
@@ -56,7 +69,6 @@
   (newline)
   (display "Hit? ")
   (user-says-y?))
-
 
 (define (user-says-y?) (string=? (read-line) "y"))
 
